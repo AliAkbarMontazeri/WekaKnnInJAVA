@@ -21,7 +21,7 @@ public class wekaKnn {
 	}
  
 	public static void main(String[] args) throws Exception {
-		BufferedReader datafile = readDataFile("tt.txt");
+		BufferedReader datafile = readDataFile("putArff file here");
  
 		Instances data = new Instances(datafile);
 		data.setClassIndex(data.numAttributes() - 1);
