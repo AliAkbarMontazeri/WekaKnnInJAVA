@@ -3,6 +3,7 @@ import weka.core.converters.ArffSaver;
 import weka.core.converters.CSVLoader;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.functions.MultilayerPerceptron;
+import weka.classifiers.lazy.IBk;
 import weka.classifiers.*;
 
 import java.io.BufferedReader;
@@ -14,9 +15,9 @@ import java.util.Random;
 public class wekaKnn {
 
   public static void main(String[] args) throws Exception {
-	  BufferedReader traind = new BufferedReader(new FileReader("D:\\put train here.arff"));
-	  BufferedReader testd = new BufferedReader(new FileReader("D:\\put test here.arff"));
-	  FileWriter fw =new FileWriter("D:put ouput file here.txt");
+	  BufferedReader traind = new BufferedReader(new FileReader("D:\\Train.arff"));
+	  BufferedReader testd = new BufferedReader(new FileReader("D:\\Test.arff"));
+	  FileWriter fw =new FileWriter("D:Output.txt");
 	  double kk[];
 	  Instances train = new Instances(traind);
 	  Instances test = new Instances(testd);
@@ -24,7 +25,8 @@ public class wekaKnn {
 	  test.setClassIndex(test.numAttributes()-1);
 	  traind.close();
 	  testd.close();
-	  NaiveBayes nb = new NaiveBayes();
+	  IBk nb = new IBk();
+	  
 	  nb.buildClassifier(train);
 	  Evaluation eval = new Evaluation(train);
 	  eval.crossValidateModel(nb, train, 10, new Random(1));
